@@ -1,0 +1,40 @@
+
+spring:
+  message:
+    encoding: UTF-8
+
+#配置数据源名称，具体的数据应该在sddlAdmin上申请
+ubatis:
+  jndi:
+    name: garishmall
+    local: true
+    datasource:
+      read:
+        url: jdbc:mysql://10.112.17.20:3306/test
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.jdbc.Driver
+        # 写数据源配置(不要在测试和生产环境使用,只用作开发调试使用, 不支持其他数据源配置参数设置)
+      write:
+        url: jdbc:mysql://10.112.17.20:3306/test
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.jdbc.Driver
+
+
+#html视图 可以使用 thymeleaf模板或者FreeMarker模板
+#thymeleaf模板 的文件默认放在/resources/templates 目录下，文件的后缀为.html
+#spring.thymeleaf.prefix: classpath:/templates/
+
+#udubbo、hbase和jsp有冲突
+server:
+  port: 8081
+  tomcat:
+    additional-tld-skip-patterns: jaxb1-impl.jar,jsr173_1.0_api.jar,jaxb-api.jar,activation.jar,jaxb-core.jar
+  #jsp热部署
+  servlet:
+    jsp:
+        init-parameters:
+          development: true
+
+

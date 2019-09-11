@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.ucarinc.framework</groupId>
+        <artifactId>ucarinc-framework-parent</artifactId>
+        <version>6.0.29</version>
+    </parent>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project-version>1.0-SNAPSHOT</project-version>
+        <resource.delimiter>@</resource.delimiter>
+        <base.version>0.100.2-SNAPSHOT</base.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+                <base.version>0.100.2-SNAPSHOT</base.version>
+            </properties>
+        </profile>
+    </profiles>
+
+    <modules>
+        <module>rpcdemo</module>
+        <module>commondemo</module>
+        <module>webdemo</module>
+        <module>basedemo</module>
+    </modules>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ttp</groupId>
+    <artifactId>projectdemo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ttp</groupId>
+                <artifactId>basedemo</artifactId>
+                <version>${project-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ttp</groupId>
+                <artifactId>commondemo</artifactId>
+                <version>${project-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ttp</groupId>
+                <artifactId>rpcdemo</artifactId>
+                <version>${project-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ttp</groupId>
+                <artifactId>webdemo</artifactId>
+                <version>${project-version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

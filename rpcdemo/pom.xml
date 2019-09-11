@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.ttp</groupId>
+        <artifactId>projectdemo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>rpcdemo</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rpcdemo</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <resource.delimiter>@</resource.delimiter>
+        <base.version>0.100.2-SNAPSHOT</base.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+                <base.version>0.100.2-SNAPSHOT</base.version>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.ttp</groupId>
+            <artifactId>basedemo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ttp</groupId>
+            <artifactId>commondemo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ucarinc.framework</groupId>
+            <artifactId>ucarinc-framework-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ucarinc.framework</groupId>
+            <artifactId>ucarinc-framework-starter-web-html</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ucarinc.framework</groupId>
+            <artifactId>ucarinc-framework-starter-ubatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!--用于将springboot整合jsp-->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ucarinc.framework</groupId>
+            <artifactId>ucarinc-framework-starter-tomcat</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <finalName>${project.artifactId}</finalName>
+
+        <filters>
+            <filter>src/main/filters/${env}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+
+            <resource>
+                <directory>src/main/react/static</directory>
+                <targetPath>${basedir}/target/classes/static</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/react</directory>
+                <excludes>
+                    <!--<exclude>**/*.css</exclude>
+          <exclude>**/*.js</exclude>
+          <exclude>.gitkeep</exclude>-->
+                    <exclude>static/*</exclude>
+                </excludes>
+                <targetPath>${basedir}/target/classes/templates</targetPath>
+            </resource>
+
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.ttp.rpcdemo.RpcDemoApplication</mainClass>
+                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
