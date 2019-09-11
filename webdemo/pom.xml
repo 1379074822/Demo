@@ -130,22 +130,24 @@
 
         <plugins>
 
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.ttp.webdemo.WebDemoApplication</mainClass>
-                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>build-info</goal>
                             <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
+
+
         </plugins>
     </build>
 </project>

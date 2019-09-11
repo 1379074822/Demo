@@ -117,12 +117,10 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.ttp.rpcdemo.RpcDemoApplication</mainClass>
-                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>build-info</goal>
                             <goal>repackage</goal>
                         </goals>
                     </execution>
